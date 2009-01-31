@@ -127,22 +127,6 @@ def get_spring_source(env):
 ### AI
 ################################################################################
 
-## lists source files for each individual AI Interface and Skirmish AI
-#def get_AI_source(env, path, which):
-#	result = get_source(env, os.path.join(path, which))
-#	return result
-#
-## lists source files for each individual AI Interface
-#def get_AIInterface_source(env, which):
-#	result = get_AI_source(env, 'Interfaces', which)
-#	return result
-#
-## lists source files for each individual Skirmish AI
-#def get_skirmishAI_source(env, which):
-#	result = get_AI_source(env, 'Skirmish', which)
-#	return result
-
-
 # lists source files common for all AI Interfaces and Skirmish AIs
 def get_shared_AI_source(env):
 	result = []
