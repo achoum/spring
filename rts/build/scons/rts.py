@@ -84,10 +84,6 @@ def generate(env):
 	env['builddir'] = '#build'
 	if args.has_key('builddir'):
 		env['builddir'] = args['builddir']
-	sys.stderr.write('The builddir is, bd (raw): ' + env['builddir'] + '\n')
-	sys.stderr.write('The builddir is, SCons.Script.Dir(bd).abspath: ' + SCons.Script.Dir(env['builddir']).abspath + '\n')
-	exit(666)
-	#sys.stderr.write('The builddir is, SCons.Node.FS.Dir(bd).abspath: ' + SCons.Node.FS.Dir(env['builddir']).abspath + '\n')
 	bd = SCons.Script.Dir(env['builddir']).abspath
 
 	# SCons chokes in env.SConsignFile() if path doesn't exist.

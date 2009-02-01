@@ -655,6 +655,19 @@ for baseName in filelist.list_AIInterfaces(aiinterface_env, exclude_list=aiinter
 		awkVars += ['INTERFACE_SOURCE_DIR=' + Dir(interfaceJavaSrcDir).abspath]
 		awkVars += ['GENERATED_SOURCE_DIR=' + Dir(interfaceGeneratedJavaSrcDir).abspath]
 
+		def debugFunc1_buildTime(name):
+			sys.stderr.write('GENERATED_SOURCE_DIR, raw: ' + interfaceGeneratedJavaSrcDir + '\n')
+			sys.stderr.write('GENERATED_SOURCE_DIR, Dir(raw).abspath: ' + Dir(interfaceGeneratedJavaSrcDir).abspath + '\n')
+			sys.stderr.write('GENERATED_SOURCE_DIR, SCons.Script.Dir(raw).abspath: ' + SCons.Script.Dir(interfaceGeneratedJavaSrcDir).abspath + '\n')
+			#sys.stderr.write('The builddir is, SCons.Node.FS.Dir(raw).abspath: ' + SCons.Node.FS.Dir(interfaceGeneratedJavaSrcDir).abspath + '\n')
+			exit(666)
+		debugFunc1_action = SCons.Action.ActionFactory(debugFunc1_buildTime, lambda name: 'Debugging "%s"' % name)
+		debugFunc1_cmd = myEnv.Command('#dummyTarget_debugFunc1', os.path.join(springInterfaceSrcDir, 'AISEvents.h'), debugFunc1_action('#dummyTarget_debugFunc1'))
+		Alias(baseName, debugFunc1_cmd)
+		Alias('AIInterfaces', debugFunc1_cmd)
+		Default(debugFunc1_cmd)
+		
+
 		# wrapp the AI Events
 		awkScripts = []
 		awkScripts += ['jna_wrappEvents.awk']
