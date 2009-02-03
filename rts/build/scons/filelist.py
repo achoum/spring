@@ -6,6 +6,17 @@ import os, re
 ### functions to make lists of source files ###
 ###############################################
 
+sourceRootDir = ''
+def setSourceRootDir(absPath):
+	sourceRootDir = absPath
+def getAbsDir(env, relPath):
+	# This worked up to SCons 0.98
+	#return SCons.Script.Dir(interfaceGeneratedJavaSrcDir).abspath
+	path = relPath
+	if (relPath.startswith('#')):
+		# replace '#' with source root
+		path = relPath.replace('#', sourceRootDir)
+	return os.path.abspath(path)
 
 def fix_path(path):
 	pieces = path.split('/')
