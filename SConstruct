@@ -40,7 +40,7 @@ import os, sys
 sys.path.append('rts/build/scons')
 import filelist
 
-filelist.setSourceRootDir(os.getcwd())
+filelist.setSourceRootDir(os.path.abspath(os.getcwd()))
 
 if sys.platform == 'win32':
 	# force to mingw, otherwise picks up msvc
