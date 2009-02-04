@@ -16,7 +16,7 @@ def getAbsDir(env, relPath):
 	#return SCons.Script.Dir(interfaceGeneratedJavaSrcDir).abspath
 	path = relPath
 	#if (relPath.startswith('#')):
-	if (relPath[0:1] == '#'):
+	if (len(relPath) > 0 and relPath[0:1] == '#'):
 		sys.stderr.write("\tstarts with #!: " + relPath)
 		# replace '#' with source root
 		#path = os.path.join(sourceRootDir, relPath.replace('#', ''))
