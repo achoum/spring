@@ -5,7 +5,7 @@ import os, re
 ###############################################
 ### functions to make lists of source files ###
 ###############################################
-
+import sys
 sourceRootDir = ''
 def setSourceRootDir(absPath):
 	global sourceRootDir
