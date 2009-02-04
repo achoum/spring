@@ -656,10 +656,23 @@ for baseName in filelist.list_AIInterfaces(aiinterface_env, exclude_list=aiinter
 		awkVars += ['GENERATED_SOURCE_DIR=' + filelist.getAbsDir(env, interfaceGeneratedJavaSrcDir)]
 
 		def debugFunc1_buildTime(name):
+
+			sys.stderr.write("")
+			sys.stderr.write("os.getcwd(): " + os.getcwd())
+			sys.stderr.write("os.path.abspath(os.getcwd()): " + os.path.abspath(os.getcwd()))
+			cwdTmp = os.getcwd()
+			os.chdir('../..')
+			sys.stderr.write("getAbsDir(#build): " + filelist.getAbsDir(env, "#build"))
+			sys.stderr.write("getAbsDir(build): " + filelist.getAbsDir(env, "build"))
+			sys.stderr.write("getAbsDir(/home/user/x): " + filelist.getAbsDir(env, "/home/user/x"))
+			sys.stderr.write("getAbsDir(/home/../usr/x): " + filelist.getAbsDir(env, "/home/../usr/x"))
+			os.chdir(cwdTmp)
+			sys.stderr.write("")
+
 			sys.stderr.write('GENERATED_SOURCE_DIR, raw: ' + interfaceGeneratedJavaSrcDir + '\n')
 			sys.stderr.write('GENERATED_SOURCE_DIR, Dir(raw).abspath: ' + Dir(interfaceGeneratedJavaSrcDir).abspath + '\n')
 			sys.stderr.write('GENERATED_SOURCE_DIR, SCons.Script.Dir(raw).abspath: ' + SCons.Script.Dir(interfaceGeneratedJavaSrcDir).abspath + '\n')
-			sys.stderr.write('GENERATED_SOURCE_DIR, filelist.getAbsDir(env, raw).abspath: ' + filelist.getAbsDir(env, interfaceGeneratedJavaSrcDir) + '\n')
+			sys.stderr.write('GENERATED_SOURCE_DIR, filelist.getAbsDir(env, raw): ' + filelist.getAbsDir(env, interfaceGeneratedJavaSrcDir) + '\n')
 			#sys.stderr.write('The builddir is, SCons.Node.FS.Dir(raw).abspath: ' + SCons.Node.FS.Dir(interfaceGeneratedJavaSrcDir).abspath + '\n')
 			#exit(666)
 		debugFunc1_action = SCons.Action.ActionFactory(debugFunc1_buildTime, lambda name: 'Debugging "%s"' % name)
