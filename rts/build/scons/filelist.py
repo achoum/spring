@@ -8,6 +8,7 @@ import os, re
 
 sourceRootDir = ''
 def setSourceRootDir(absPath):
+	global sourceRootDir
 	sourceRootDir = absPath
 def getAbsDir(env, relPath):
 	# This worked up to SCons 0.98
@@ -15,7 +16,7 @@ def getAbsDir(env, relPath):
 	path = relPath
 	if (relPath.startswith('#')):
 		# replace '#' with source root
-		path = relPath.replace('#', sourceRootDir)
+		path = os.path.join(sourceRootDir, relPath[1:])
 	return os.path.abspath(path)
 
 def fix_path(path):
