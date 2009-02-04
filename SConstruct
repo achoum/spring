@@ -59,6 +59,19 @@ else:
 	if os.path.exists('rts/System/StdAfx.h.gch'):
 		os.unlink('rts/System/StdAfx.h.gch')
 
+sys.stderr.write("")
+sys.stderr.write("os.getcwd(): " + os.getcwd())
+sys.stderr.write("os.path.abspath(os.getcwd()): " + os.path.abspath(os.getcwd()))
+cwdTmp = os.getcwd()
+os.chdir('../..')
+sys.stderr.write("getAbsDir(#build): " + filelist.getAbsDir(env, "#build"))
+sys.stderr.write("getAbsDir(build): " + filelist.getAbsDir(env, "build"))
+sys.stderr.write("getAbsDir(/home/user/x): " + filelist.getAbsDir(env, "/home/user/x"))
+sys.stderr.write("getAbsDir(/home/../usr/x): " + filelist.getAbsDir(env, "/home/../usr/x"))
+os.chdir(cwdTmp)
+sys.stderr.write("")
+#exit(777)
+
 ################################################################################
 ### Build streflop (which has it's own Makefile-based build system)
 ################################################################################
